@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
                           int.tryParse(state.params['detailid'] ?? '') ?? 1)),
             ],
             builder: (context, state) {
-              var tabId = max(
+              final tabId = max(
                       0,
                       min(3,
                           (int.tryParse(state.params['tabid'] ?? '') ?? 1))) -
@@ -46,16 +46,16 @@ class MyApp extends StatelessWidget {
 
               return Column(
                 children: [
-                  AppBar(title: Text('Home Page')),
+                  AppBar(title: const Text('Home Page')),
                   Expanded(
                     child: IndexedStack(
                       index: tabId,
-                      key: ValueKey('indexed_stack'),
+                      key: const ValueKey('indexed_stack'),
                       children: [
                         _StatefulTab(
-                          key: Key('tab1'),
+                          key: const Key('tab1'),
                           builder: (context, index) => Padding(
-                            padding: EdgeInsets.only(
+                            padding: const EdgeInsets.only(
                               left: 16.0,
                               right: 16.0,
                               top: 16.0,
@@ -67,16 +67,16 @@ class MyApp extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 mainAxisSize: MainAxisSize.min,
                                 children: <Widget>[
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 200.0,
                                     width: double.infinity,
                                     child: Placeholder(),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 8.0,
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.only(
+                                    padding: const EdgeInsets.only(
                                       left: 16.0,
                                       right: 16.0,
                                       top: 8.0,
@@ -94,14 +94,14 @@ class MyApp extends StatelessWidget {
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.symmetric(
+                                    padding: const EdgeInsets.symmetric(
                                       horizontal: 16.0,
                                       vertical: 8.0,
                                     ),
                                     child: Container(
                                       color: Colors.black,
                                       height: 16.0,
-                                      padding: EdgeInsets.symmetric(
+                                      padding: const EdgeInsets.symmetric(
                                         horizontal: 16.0,
                                         vertical: 8.0,
                                       ),
@@ -113,7 +113,7 @@ class MyApp extends StatelessWidget {
                           ),
                         ),
                         _StatefulTab(
-                          key: Key('tab2'),
+                          key: const Key('tab2'),
                           builder: (context, index) => ListTile(
                             onTap: () => context.go(
                               '/home/2/detail/$index',
@@ -125,7 +125,7 @@ class MyApp extends StatelessWidget {
                                   child: Container(
                                     color: Colors.black,
                                     height: 12.0,
-                                    padding: EdgeInsets.symmetric(
+                                    padding: const EdgeInsets.symmetric(
                                       horizontal: 16.0,
                                       vertical: 8.0,
                                     ),
@@ -136,7 +136,7 @@ class MyApp extends StatelessWidget {
                           ),
                         ),
                         _StatefulTab(
-                          key: Key('tab3'),
+                          key: const Key('tab3'),
                           builder: (context, index) => Center(
                             child: Text('$index'),
                           ),
@@ -178,12 +178,12 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var regex = RegExp(r'^/home/(?<tabid>\d*)/?.*');
-    var matches = regex.allMatches(GoRouter.of(context).location);
+    final regex = RegExp(r'^/home/(?<tabid>\d*)/?.*');
+    final matches = regex.allMatches(GoRouter.of(context).location);
 
     var tab = 0;
     if (matches.isNotEmpty) {
-      var first = matches.first;
+      final first = matches.first;
       tab = (int.tryParse(first.namedGroup('tabid') ?? '') ?? 1) - 1;
     }
 
@@ -194,15 +194,15 @@ class MyHomePage extends StatelessWidget {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: tab,
         items: [
-          BottomNavigationBarItem(
+          const BottomNavigationBarItem(
             icon: Icon(Icons.panorama),
             label: 'Card',
           ),
-          BottomNavigationBarItem(
+          const BottomNavigationBarItem(
             icon: Icon(Icons.list),
             label: 'Tile',
           ),
-          BottomNavigationBarItem(
+          const BottomNavigationBarItem(
             icon: Icon(Icons.abc),
             label: 'Text',
           ),
